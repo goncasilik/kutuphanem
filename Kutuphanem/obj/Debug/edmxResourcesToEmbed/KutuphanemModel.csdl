@@ -1,39 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="KutuphanemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="KutuphanemEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Kitabım" EntityType="KutuphanemModel.Kitabım" />
-    <EntitySet Name="Kitap" EntityType="KutuphanemModel.Kitap" />
-    <EntitySet Name="KitapTur" EntityType="KutuphanemModel.KitapTur" />
-    <EntitySet Name="Kullanici" EntityType="KutuphanemModel.Kullanici" />
-    <EntitySet Name="sysdiagrams" EntityType="KutuphanemModel.sysdiagrams" />
-    <EntitySet Name="Tur" EntityType="KutuphanemModel.Tur" />
-    <EntitySet Name="Yazar" EntityType="KutuphanemModel.Yazar" />
-    <EntitySet Name="YazarKitap" EntityType="KutuphanemModel.YazarKitap" />
-    <AssociationSet Name="FK_Kitabım_Kitap" Association="KutuphanemModel.FK_Kitabım_Kitap">
-      <End Role="Kitap" EntitySet="Kitap" />
-      <End Role="Kitabım" EntitySet="Kitabım" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Kitabım_Kullanici" Association="KutuphanemModel.FK_Kitabım_Kullanici">
-      <End Role="Kullanici" EntitySet="Kullanici" />
-      <End Role="Kitabım" EntitySet="Kitabım" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KitapTur_Kitap" Association="KutuphanemModel.FK_KitapTur_Kitap">
-      <End Role="Kitap" EntitySet="Kitap" />
-      <End Role="KitapTur" EntitySet="KitapTur" />
-    </AssociationSet>
-    <AssociationSet Name="FK_YazarKitap_Kitap" Association="KutuphanemModel.FK_YazarKitap_Kitap">
-      <End Role="Kitap" EntitySet="Kitap" />
-      <End Role="YazarKitap" EntitySet="YazarKitap" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KitapTur_Tur1" Association="KutuphanemModel.FK_KitapTur_Tur1">
-      <End Role="Tur" EntitySet="Tur" />
-      <End Role="KitapTur" EntitySet="KitapTur" />
-    </AssociationSet>
-    <AssociationSet Name="FK_YazarKitap_Yazar" Association="KutuphanemModel.FK_YazarKitap_Yazar">
-      <End Role="Yazar" EntitySet="Yazar" />
-      <End Role="YazarKitap" EntitySet="YazarKitap" />
-    </AssociationSet>
-  </EntityContainer>
   <EntityType Name="Kitabım">
     <Key>
       <PropertyRef Name="kitabımID" />
@@ -41,20 +7,20 @@
     <Property Name="kitabımID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="kitapID" Type="Int32" Nullable="false" />
     <Property Name="kullaniciID" Type="Int32" Nullable="false" />
-    <Property Name="durum" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Kitap" Relationship="KutuphanemModel.FK_Kitabım_Kitap" FromRole="Kitabım" ToRole="Kitap" />
-    <NavigationProperty Name="Kullanici" Relationship="KutuphanemModel.FK_Kitabım_Kullanici" FromRole="Kitabım" ToRole="Kullanici" />
+    <Property Name="durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Kitap" Relationship="Self.FK_Kitabım_Kitap" FromRole="Kitabım" ToRole="Kitap" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_Kitabım_Kullanici" FromRole="Kitabım" ToRole="Kullanici" />
   </EntityType>
   <EntityType Name="Kitap">
     <Key>
       <PropertyRef Name="kitapID" />
     </Key>
     <Property Name="kitapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="kitapAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kitapAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="sayfaSayisi" Type="Int32" />
-    <NavigationProperty Name="Kitabım" Relationship="KutuphanemModel.FK_Kitabım_Kitap" FromRole="Kitap" ToRole="Kitabım" />
-    <NavigationProperty Name="KitapTur" Relationship="KutuphanemModel.FK_KitapTur_Kitap" FromRole="Kitap" ToRole="KitapTur" />
-    <NavigationProperty Name="YazarKitap" Relationship="KutuphanemModel.FK_YazarKitap_Kitap" FromRole="Kitap" ToRole="YazarKitap" />
+    <NavigationProperty Name="Kitabım" Relationship="Self.FK_Kitabım_Kitap" FromRole="Kitap" ToRole="Kitabım" />
+    <NavigationProperty Name="KitapTur" Relationship="Self.FK_KitapTur_Kitap" FromRole="Kitap" ToRole="KitapTur" />
+    <NavigationProperty Name="YazarKitap" Relationship="Self.FK_YazarKitap_Kitap" FromRole="Kitap" ToRole="YazarKitap" />
   </EntityType>
   <EntityType Name="KitapTur">
     <Key>
@@ -63,30 +29,20 @@
     <Property Name="kitapTurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="kitapID" Type="Int32" />
     <Property Name="turID" Type="Int32" />
-    <NavigationProperty Name="Kitap" Relationship="KutuphanemModel.FK_KitapTur_Kitap" FromRole="KitapTur" ToRole="Kitap" />
-    <NavigationProperty Name="Tur" Relationship="KutuphanemModel.FK_KitapTur_Tur1" FromRole="KitapTur" ToRole="Tur" />
+    <NavigationProperty Name="Kitap" Relationship="Self.FK_KitapTur_Kitap" FromRole="KitapTur" ToRole="Kitap" />
+    <NavigationProperty Name="Tur" Relationship="Self.FK_KitapTur_Tur1" FromRole="KitapTur" ToRole="Tur" />
   </EntityType>
   <EntityType Name="Kullanici">
     <Key>
       <PropertyRef Name="kullaniciID" />
     </Key>
     <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="kullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="sifre" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="rol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Kitabım" Relationship="KutuphanemModel.FK_Kitabım_Kullanici" FromRole="Kullanici" ToRole="Kitabım" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="sifre" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Kitabım" Relationship="Self.FK_Kitabım_Kullanici" FromRole="Kullanici" ToRole="Kitabım" />
   </EntityType>
   <EntityType Name="Tur">
     <Key>
@@ -94,15 +50,15 @@
     </Key>
     <Property Name="turID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="tur1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="KitapTur" Relationship="KutuphanemModel.FK_KitapTur_Tur1" FromRole="Tur" ToRole="KitapTur" />
+    <NavigationProperty Name="KitapTur" Relationship="Self.FK_KitapTur_Tur1" FromRole="Tur" ToRole="KitapTur" />
   </EntityType>
   <EntityType Name="Yazar">
     <Key>
       <PropertyRef Name="yazarID" />
     </Key>
     <Property Name="yazarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="yazarAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="YazarKitap" Relationship="KutuphanemModel.FK_YazarKitap_Yazar" FromRole="Yazar" ToRole="YazarKitap" />
+    <Property Name="yazarAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="YazarKitap" Relationship="Self.FK_YazarKitap_Yazar" FromRole="Yazar" ToRole="YazarKitap" />
   </EntityType>
   <EntityType Name="YazarKitap">
     <Key>
@@ -111,12 +67,12 @@
     <Property Name="yazarKitapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="kitapID" Type="Int32" />
     <Property Name="yazarID" Type="Int32" />
-    <NavigationProperty Name="Kitap" Relationship="KutuphanemModel.FK_YazarKitap_Kitap" FromRole="YazarKitap" ToRole="Kitap" />
-    <NavigationProperty Name="Yazar" Relationship="KutuphanemModel.FK_YazarKitap_Yazar" FromRole="YazarKitap" ToRole="Yazar" />
+    <NavigationProperty Name="Kitap" Relationship="Self.FK_YazarKitap_Kitap" FromRole="YazarKitap" ToRole="Kitap" />
+    <NavigationProperty Name="Yazar" Relationship="Self.FK_YazarKitap_Yazar" FromRole="YazarKitap" ToRole="Yazar" />
   </EntityType>
   <Association Name="FK_Kitabım_Kitap">
-    <End Type="KutuphanemModel.Kitap" Role="Kitap" Multiplicity="1" />
-    <End Type="KutuphanemModel.Kitabım" Role="Kitabım" Multiplicity="*" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="1" />
+    <End Role="Kitabım" Type="Self.Kitabım" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Kitap">
         <PropertyRef Name="kitapID" />
@@ -127,8 +83,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Kitabım_Kullanici">
-    <End Type="KutuphanemModel.Kullanici" Role="Kullanici" Multiplicity="1" />
-    <End Type="KutuphanemModel.Kitabım" Role="Kitabım" Multiplicity="*" />
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Kitabım" Type="Self.Kitabım" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Kullanici">
         <PropertyRef Name="kullaniciID" />
@@ -139,8 +95,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_KitapTur_Kitap">
-    <End Type="KutuphanemModel.Kitap" Role="Kitap" Multiplicity="0..1" />
-    <End Type="KutuphanemModel.KitapTur" Role="KitapTur" Multiplicity="*" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="0..1" />
+    <End Role="KitapTur" Type="Self.KitapTur" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Kitap">
         <PropertyRef Name="kitapID" />
@@ -151,8 +107,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_YazarKitap_Kitap">
-    <End Type="KutuphanemModel.Kitap" Role="Kitap" Multiplicity="0..1" />
-    <End Type="KutuphanemModel.YazarKitap" Role="YazarKitap" Multiplicity="*" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="0..1" />
+    <End Role="YazarKitap" Type="Self.YazarKitap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Kitap">
         <PropertyRef Name="kitapID" />
@@ -163,8 +119,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_KitapTur_Tur1">
-    <End Type="KutuphanemModel.Tur" Role="Tur" Multiplicity="0..1" />
-    <End Type="KutuphanemModel.KitapTur" Role="KitapTur" Multiplicity="*" />
+    <End Role="Tur" Type="Self.Tur" Multiplicity="0..1" />
+    <End Role="KitapTur" Type="Self.KitapTur" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tur">
         <PropertyRef Name="turID" />
@@ -175,8 +131,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_YazarKitap_Yazar">
-    <End Type="KutuphanemModel.Yazar" Role="Yazar" Multiplicity="0..1" />
-    <End Type="KutuphanemModel.YazarKitap" Role="YazarKitap" Multiplicity="*" />
+    <End Role="Yazar" Type="Self.Yazar" Multiplicity="0..1" />
+    <End Role="YazarKitap" Type="Self.YazarKitap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Yazar">
         <PropertyRef Name="yazarID" />
@@ -186,4 +142,37 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="KutuphanemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kitabım" EntityType="Self.Kitabım" />
+    <EntitySet Name="Kitap" EntityType="Self.Kitap" />
+    <EntitySet Name="KitapTur" EntityType="Self.KitapTur" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+    <EntitySet Name="Tur" EntityType="Self.Tur" />
+    <EntitySet Name="Yazar" EntityType="Self.Yazar" />
+    <EntitySet Name="YazarKitap" EntityType="Self.YazarKitap" />
+    <AssociationSet Name="FK_Kitabım_Kitap" Association="Self.FK_Kitabım_Kitap">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="Kitabım" EntitySet="Kitabım" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kitabım_Kullanici" Association="Self.FK_Kitabım_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Kitabım" EntitySet="Kitabım" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KitapTur_Kitap" Association="Self.FK_KitapTur_Kitap">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="KitapTur" EntitySet="KitapTur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YazarKitap_Kitap" Association="Self.FK_YazarKitap_Kitap">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="YazarKitap" EntitySet="YazarKitap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KitapTur_Tur1" Association="Self.FK_KitapTur_Tur1">
+      <End Role="Tur" EntitySet="Tur" />
+      <End Role="KitapTur" EntitySet="KitapTur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YazarKitap_Yazar" Association="Self.FK_YazarKitap_Yazar">
+      <End Role="Yazar" EntitySet="Yazar" />
+      <End Role="YazarKitap" EntitySet="YazarKitap" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

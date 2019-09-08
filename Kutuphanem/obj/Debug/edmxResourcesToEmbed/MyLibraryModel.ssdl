@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyLibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="AuthorID" />
+    </Key>
+    <Property Name="AuthorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MyLibrary.dbo.AuthorBook' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AuthorBook">
+    <Key>
+      <PropertyRef Name="AuthorID" />
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="AuthorID" Type="int" Nullable="false" />
+    <Property Name="BookID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="PageCount" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MyLibrary.dbo.BookGenre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BookGenre">
+    <Key>
+      <PropertyRef Name="BookID" />
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="BookID" Type="int" Nullable="false" />
+    <Property Name="GenreID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="8" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MyLibrary.dbo.PersonBook' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PersonBook">
+    <Key>
+      <PropertyRef Name="BookID" />
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="BookID" Type="int" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__AuthorBoo__Autho__3A81B327">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="AuthorBook" Type="Self.AuthorBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="AuthorID" />
+      </Principal>
+      <Dependent Role="AuthorBook">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AuthorBoo__BookI__3B75D760">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="AuthorBook" Type="Self.AuthorBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="AuthorBook">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookGenre__BookI__3F466844">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="BookGenre">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookGenre__Genre__403A8C7D">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+    <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="GenreID" />
+      </Principal>
+      <Dependent Role="BookGenre">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PersonBoo__BookI__49C3F6B7">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="PersonBook" Type="Self.PersonBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="PersonBook">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PersonBoo__Perso__4AB81AF0">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="PersonBook" Type="Self.PersonBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="PersonBook">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyLibraryModelStoreContainer">
+    <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuthorBook" EntityType="Self.AuthorBook" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AuthorBook].[AuthorID] AS [AuthorID], 
+    [AuthorBook].[BookID] AS [BookID]
+    FROM [dbo].[AuthorBook] AS [AuthorBook]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BookGenre" EntityType="Self.BookGenre" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BookGenre].[BookID] AS [BookID], 
+    [BookGenre].[GenreID] AS [GenreID]
+    FROM [dbo].[BookGenre] AS [BookGenre]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PersonBook" EntityType="Self.PersonBook" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PersonBook].[BookID] AS [BookID], 
+    [PersonBook].[PersonID] AS [PersonID]
+    FROM [dbo].[PersonBook] AS [PersonBook]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__AuthorBoo__Autho__3A81B327" Association="Self.FK__AuthorBoo__Autho__3A81B327">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="AuthorBook" EntitySet="AuthorBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AuthorBoo__BookI__3B75D760" Association="Self.FK__AuthorBoo__BookI__3B75D760">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="AuthorBook" EntitySet="AuthorBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookGenre__BookI__3F466844" Association="Self.FK__BookGenre__BookI__3F466844">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookGenre" EntitySet="BookGenre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookGenre__Genre__403A8C7D" Association="Self.FK__BookGenre__Genre__403A8C7D">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="BookGenre" EntitySet="BookGenre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PersonBoo__BookI__49C3F6B7" Association="Self.FK__PersonBoo__BookI__49C3F6B7">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="PersonBook" EntitySet="PersonBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PersonBoo__Perso__4AB81AF0" Association="Self.FK__PersonBoo__Perso__4AB81AF0">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="PersonBook" EntitySet="PersonBook" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

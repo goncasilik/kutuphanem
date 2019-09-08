@@ -36,16 +36,6 @@
     <Property Name="sifre" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="rol" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="Tur">
     <Key>
       <PropertyRef Name="turID" />
@@ -145,7 +135,6 @@
     <EntitySet Name="Kitap" EntityType="Self.Kitap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KitapTur" EntityType="Self.KitapTur" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tur" EntityType="Self.Tur" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Yazar" EntityType="Self.Yazar" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YazarKitap" EntityType="Self.YazarKitap" Schema="dbo" store:Type="Tables" />

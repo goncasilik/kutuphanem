@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyLibraryModelStoreContainer" CdmEntityContainer="MyLibraryEntities">
+    <EntitySetMapping Name="Author">
+      <EntityTypeMapping TypeName="MyLibraryModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book">
+      <EntityTypeMapping TypeName="MyLibraryModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="PageCount" ColumnName="PageCount" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BookID" ColumnName="BookID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genre">
+      <EntityTypeMapping TypeName="MyLibraryModel.Genre">
+        <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="MyLibraryModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AuthorBook" TypeName="MyLibraryModel.AuthorBook" StoreEntitySet="AuthorBook">
+      <EndProperty Name="Book">
+        <ScalarProperty Name="BookID" ColumnName="BookID" />
+      </EndProperty>
+      <EndProperty Name="Author">
+        <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookGenre" TypeName="MyLibraryModel.BookGenre" StoreEntitySet="BookGenre">
+      <EndProperty Name="Genre">
+        <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="BookID" ColumnName="BookID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonBook" TypeName="MyLibraryModel.PersonBook" StoreEntitySet="PersonBook">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="BookID" ColumnName="BookID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

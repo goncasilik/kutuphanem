@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyLibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="AuthorID" />
+    </Key>
+    <Property Name="AuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="MyLibraryModel.AuthorBook1" FromRole="Author" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageCount" Type="Int32" />
+    <NavigationProperty Name="MyBook" Relationship="Self.FK__MyBook__BookID__48CFD27E" FromRole="Book" ToRole="MyBook" />
+    <NavigationProperty Name="Author" Relationship="MyLibraryModel.AuthorBook1" FromRole="Book" ToRole="Author" />
+    <NavigationProperty Name="Genre" Relationship="MyLibraryModel.BookGenre" FromRole="Book" ToRole="Genre" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="MyLibraryModel.BookGenre" FromRole="Genre" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="MyBook">
+    <Key>
+      <PropertyRef Name="MybookID" />
+    </Key>
+    <Property Name="MybookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookID" Type="Int32" Nullable="false" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__MyBook__BookID__48CFD27E" FromRole="MyBook" ToRole="Book" />
+    <NavigationProperty Name="Person" Relationship="Self.FK__MyBook__PersonID__49C3F6B7" FromRole="MyBook" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MyBook" Relationship="Self.FK__MyBook__PersonID__49C3F6B7" FromRole="Person" ToRole="MyBook" />
+  </EntityType>
+  <Association Name="FK__MyBook__BookID__48CFD27E">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="MyBook" Type="Self.MyBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="MyBook">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MyBook__PersonID__49C3F6B7">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="MyBook" Type="Self.MyBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="MyBook">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyLibraryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Author" EntityType="Self.Author" />
+    <EntitySet Name="Book" EntityType="Self.Book" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" />
+    <EntitySet Name="MyBook" EntityType="Self.MyBook" />
+    <EntitySet Name="Person" EntityType="Self.Person" />
+    <AssociationSet Name="FK__MyBook__BookID__48CFD27E" Association="Self.FK__MyBook__BookID__48CFD27E">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="MyBook" EntitySet="MyBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MyBook__PersonID__49C3F6B7" Association="Self.FK__MyBook__PersonID__49C3F6B7">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="MyBook" EntitySet="MyBook" />
+    </AssociationSet>
+    <AssociationSet Name="AuthorBook1" Association="MyLibraryModel.AuthorBook1">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="BookGenre" Association="MyLibraryModel.BookGenre">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Genre" EntitySet="Genre" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="AuthorBook1">
+    <End Type="MyLibraryModel.Author" Role="Author" Multiplicity="*" />
+    <End Type="MyLibraryModel.Book" Role="Book" Multiplicity="*" />
+  </Association>
+  <Association Name="BookGenre">
+    <End Type="MyLibraryModel.Book" Role="Book" Multiplicity="*" />
+    <End Type="MyLibraryModel.Genre" Role="Genre" Multiplicity="*" />
+  </Association>
+</Schema>

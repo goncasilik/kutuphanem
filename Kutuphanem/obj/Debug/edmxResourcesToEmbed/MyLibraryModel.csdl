@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyLibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MyLibraryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Author" EntityType="MyLibraryModel.Author" />
+    <EntitySet Name="Book" EntityType="MyLibraryModel.Book" />
+    <EntitySet Name="Genre" EntityType="MyLibraryModel.Genre" />
+    <EntitySet Name="Person" EntityType="MyLibraryModel.Person" />
+    <AssociationSet Name="AuthorBook" Association="MyLibraryModel.AuthorBook">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="BookGenre" Association="MyLibraryModel.BookGenre">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Genre" EntitySet="Genre" />
+    </AssociationSet>
+    <AssociationSet Name="PersonBook" Association="MyLibraryModel.PersonBook">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="AuthorID" />
+    </Key>
+    <Property Name="AuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books" Relationship="MyLibraryModel.AuthorBook" FromRole="Author" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageCount" Type="Int32" />
+    <NavigationProperty Name="Authors" Relationship="MyLibraryModel.AuthorBook" FromRole="Book" ToRole="Author" />
+    <NavigationProperty Name="Genres" Relationship="MyLibraryModel.BookGenre" FromRole="Book" ToRole="Genre" />
+    <NavigationProperty Name="Persons" Relationship="MyLibraryModel.PersonBook" FromRole="Book" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books" Relationship="MyLibraryModel.BookGenre" FromRole="Genre" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books" Relationship="MyLibraryModel.PersonBook" FromRole="Person" ToRole="Book" />
+  </EntityType>
+  <Association Name="AuthorBook">
+    <End Type="MyLibraryModel.Author" Role="Author" Multiplicity="*" />
+    <End Type="MyLibraryModel.Book" Role="Book" Multiplicity="*" />
+  </Association>
+  <Association Name="BookGenre">
+    <End Type="MyLibraryModel.Book" Role="Book" Multiplicity="*" />
+    <End Type="MyLibraryModel.Genre" Role="Genre" Multiplicity="*" />
+  </Association>
+  <Association Name="PersonBook">
+    <End Type="MyLibraryModel.Book" Role="Book" Multiplicity="*" />
+    <End Type="MyLibraryModel.Person" Role="Person" Multiplicity="*" />
+  </Association>
+</Schema>
