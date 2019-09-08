@@ -9,28 +9,25 @@ namespace Kutuphanem.DAL
 {
     class MyLibraryHelper
     {
-        public static bool AddBookToMyLibrary(int bookID, int personID = 1, string status = "read")
+        public static bool AddBookToMyLibrary(int bookID, int personID = 1)
         {
             try
             {
                 using (MyLibraryEntities db = new MyLibraryEntities())
                 {
                     Book book = db.Book.Where(b => b.BookID == bookID).FirstOrDefault();
-                    Person person = db.Person.Where(s => s.PersonID == bookID).FirstOrDefault();
+                    Person person = db.Person.Where(p => p.PersonID == personID).FirstOrDefault();
 
-                    //if (book is Book && person is Person)
-                    //{
-                    //    MyBook myBook = new MyBook();
+                    if (book is Book && person is Person)
+                    {
+                        // add instance to navigation property
+                        person.Books.Add(book);
 
-                    //    myBook.PersonID = personID;
-                    //    myBook.BookID = bookID;
-                    //    myBook.Status = status;
+                        //call SaveChanges from context to confirm inserts
+                        db.SaveChanges();
 
-                    //    db.MyBook.Add(myBook);
-                    //    db.SaveChanges();
-
-                    //    return true;
-                    //}
+                        return true;
+                    }
 
                     return false;
                 }

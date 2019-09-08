@@ -91,6 +91,9 @@
     <Compile Include="Person.cs">
       <DependentUpon>MyLibraryModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonBook.cs">
+      <DependentUpon>MyLibraryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UI\Admin.cs">
       <SubType>Form</SubType>
     </Compile>
