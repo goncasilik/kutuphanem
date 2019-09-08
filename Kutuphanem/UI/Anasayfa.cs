@@ -20,22 +20,9 @@ namespace Kutuphanem
 
         private void Anasayfa_Load(object sender, EventArgs e)
         {
-            List<BookModel> bookList = KitapHelper.ListBooks();
-
-            foreach (var book in bookList)
-            {
-                var bookItem = new BookItem();
-
-                bookItem.bookName = book.Name;
-                bookItem.bookID = book.BookID.ToString();
-
-                foreach (var author in book.Authors)
-                {
-                    bookItem.authors.Add(author);
-                }
-
-                listBox1.Items.Add(bookItem);
-            }
+            listBox1.DataSource = KitapHelper.ListBooks();
+            PersonModel personModel = DAL.PersonHelper.GetPersonWithBooks();
+            listBox2.DataSource = KitapHelper.MapBookEntity(personModel.Books);
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,26 +31,13 @@ namespace Kutuphanem
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            BookItem bookItem = (BookItem)listBox1.SelectedItem;
-            DAL.MyLibraryHelper.AddBookToMyLibrary(Convert.ToInt32(bookItem.bookID));
+            BookModel bookModel = (BookModel)listBox1.SelectedItem;
+            DAL.MyLibraryHelper.AddBookToMyLibrary(Convert.ToInt32(bookModel.BookID));
         }
-    }
 
-    class BookItem
-    {
-        public string bookName { get; set; }
-        public string bookID { get; set; }
-
-        public List<string> authors = new List<string>();
-        public override string ToString()
+        private void ListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string authorsString = "";
-
-            foreach (var author in authors)
-            {
-                authorsString += "," + author;
-            }
-            return bookName + '-' + authorsString;
+            
         }
     }
 }

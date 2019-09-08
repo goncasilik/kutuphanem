@@ -26,8 +26,10 @@ namespace Kutuphanem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Author newAuthor = new Author();
-            newAuthor.Name = textBox2.Text;
+            Author newAuthor = new Author
+            {
+                Name = textBox2.Text
+            };
             db.Author.Add(newAuthor);
             db.SaveChanges();
             dataGridView1.DataSource = db.Author.ToList();

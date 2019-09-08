@@ -27,8 +27,10 @@ namespace Kutuphanem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Genre newGenre = new Genre();
-            newGenre.Name = textBox2.Text;
+            Genre newGenre = new Genre
+            {
+                Name = textBox2.Text
+            };
             db.Genre.Add(newGenre);
             db.SaveChanges();
             dataGridView1.DataSource = db.Genre.ToList();

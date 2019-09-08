@@ -15,29 +15,7 @@ namespace Kutuphanem
             {
                 using (MyLibraryEntities db = new MyLibraryEntities())
                 {
-                    var query = db.Book.Select(book =>
-                            new {
-                                bookID = book.BookID,
-                                name = book.Name,
-                                pageCount = book.PageCount,
-                                authors = book.Authors.Select(i => i.Name).ToList()
-                            }).ToList<dynamic>();
-
-                    var books = new List<BookModel>();
-
-                    foreach (var book in query)
-                    {
-                        BookModel bookModel = new BookModel();
-
-                        bookModel.BookID = book.bookID;
-                        bookModel.Name = book.name;
-                        bookModel.PageCount = book.pageCount;
-                        bookModel.Authors = book.authors;
-
-                        books.Add(bookModel);
-                    }
-
-                    return books;
+                    return MapBookEntity(db.Book.ToList<Book>());
                 }
             }
 
@@ -46,6 +24,27 @@ namespace Kutuphanem
                 throw new Exception(e.Message);
             }
             
+        }
+
+        public static List<BookModel> MapBookEntity(List<Book> books)
+        {
+            List<BookModel> booksModel = new List<BookModel>();
+
+            foreach (var book in books)
+            {
+                BookModel bookModel = new BookModel
+                {
+                    BookID = book.BookID,
+                    Name = book.Name,
+                    PageCount = book.PageCount,
+                    // Authors = book.Authors.ToList(),
+                    // Genres = book.Genres.ToList()
+                };
+
+                booksModel.Add(bookModel);
+            }
+
+            return booksModel;
         }
 
         public static void AddBook(Book book)

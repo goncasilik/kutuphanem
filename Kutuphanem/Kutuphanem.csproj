@@ -63,13 +63,16 @@
     <Compile Include="Book.cs">
       <DependentUpon>MyLibraryModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\GenreHelper.cs" />
     <Compile Include="DAL\MyLibraryHelper.cs" />
+    <Compile Include="DAL\PersonHelper.cs" />
     <Compile Include="Genre.cs">
       <DependentUpon>MyLibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AuthorModel.cs" />
     <Compile Include="Model\BookModel.cs" />
     <Compile Include="Model\MyBookModel.cs" />
+    <Compile Include="Model\PersonModel.cs" />
     <Compile Include="MyLibraryModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
