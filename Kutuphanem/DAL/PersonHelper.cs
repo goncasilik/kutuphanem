@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Kutuphanem.DAL
 {
@@ -16,8 +17,10 @@ namespace Kutuphanem.DAL
                 using (MyLibraryEntities db = new MyLibraryEntities())
                 {
                     Person person = db.Person
-                        .Where(p => p.PersonID == 1) // change this
-                        .First();
+                     .Where(p => p.PersonID == 1)
+                     .Include(p => p.Books.Select(b => b.Authors))
+                     .Include(p => p.Books.Select(g => g.Genres))
+                     .FirstOrDefault();
 
                     return MapPersonEntity(person);
                 }

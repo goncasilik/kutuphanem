@@ -17,20 +17,19 @@ namespace Kutuphanem.Model
 
         public override string ToString()
         {
-            return $"{Name}";
-            //string authorsString = "";
-            //string genresString = "";
+            string authorsString = "";
+            string genresString = "";
 
 
-            //foreach (var author in Authors)
-            //{
-            //    authorsString += "," + author.Name;
-            //}
-            //foreach (var genre in Genres)
-            //{
-            //    authorsString += "," + genre.Name;
-            //}
-            //return Name + '-' + authorsString + "( " + genresString + " )";
+            foreach (var author in Authors)
+            {
+                authorsString += "," + author.Name;
+            }
+            foreach (var genre in Genres)
+            {
+                authorsString += "," + genre.Name;
+            }
+            return Name + '-' + authorsString + "( " + genresString + " )";
         }
     }
 }

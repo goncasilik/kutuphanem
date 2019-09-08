@@ -21,8 +21,7 @@ namespace Kutuphanem
         private void Anasayfa_Load(object sender, EventArgs e)
         {
             listBox1.DataSource = KitapHelper.ListBooks();
-            PersonModel personModel = DAL.PersonHelper.GetPersonWithBooks();
-            listBox2.DataSource = KitapHelper.MapBookEntity(personModel.Books);
+            LoadMyLibrary();
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -32,12 +31,27 @@ namespace Kutuphanem
         private void Button1_Click(object sender, EventArgs e)
         {
             BookModel bookModel = (BookModel)listBox1.SelectedItem;
-            DAL.MyLibraryHelper.AddBookToMyLibrary(Convert.ToInt32(bookModel.BookID));
+            bool isAdded = DAL.MyLibraryHelper.AddBookToMyLibrary(Convert.ToInt32(bookModel.BookID));
+            if (isAdded)
+            {
+                LoadMyLibrary();
+            }
         }
 
         private void ListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void LoadMyLibrary()
+        {
+            PersonModel personModel = DAL.PersonHelper.GetPersonWithBooks();
+            listBox2.DataSource = KitapHelper.MapBookEntity(personModel.Books);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

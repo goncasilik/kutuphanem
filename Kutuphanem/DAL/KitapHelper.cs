@@ -15,7 +15,7 @@ namespace Kutuphanem
             {
                 using (MyLibraryEntities db = new MyLibraryEntities())
                 {
-                    return MapBookEntity(db.Book.ToList<Book>());
+                    return MapBookEntity(db.Book.ToList());
                 }
             }
 
@@ -37,8 +37,8 @@ namespace Kutuphanem
                     BookID = book.BookID,
                     Name = book.Name,
                     PageCount = book.PageCount,
-                    // Authors = book.Authors.ToList(),
-                    // Genres = book.Genres.ToList()
+                    Authors = book.Authors.ToList(),
+                    Genres = book.Genres.ToList()
                 };
 
                 booksModel.Add(bookModel);
