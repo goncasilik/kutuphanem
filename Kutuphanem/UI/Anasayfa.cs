@@ -20,8 +20,9 @@ namespace Kutuphanem
 
         private void Anasayfa_Load(object sender, EventArgs e)
         {
+            
             label4.Text = Form1.metin;
-            listBox1.DataSource = KitapHelper.ListBooks();
+            
             LoadMyLibrary();
         }
 
@@ -31,7 +32,7 @@ namespace Kutuphanem
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            BookModel bookModel = (BookModel)listBox1.SelectedItem;
+            BookModel bookModel = (BookModel)comboBox1.SelectedItem;
             bool isAdded = DAL.MyLibraryHelper.AddBookToMyLibrary(Convert.ToInt32(bookModel.BookID));
             if (isAdded)
             {
@@ -41,7 +42,6 @@ namespace Kutuphanem
 
         private void ListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
         }
 
         private void LoadMyLibrary()
@@ -51,6 +51,31 @@ namespace Kutuphanem
         }
 
         private void Button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            comboBox1.DataSource = KitapHelper.ListBooks(textBox1.Text);
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BookModel bookModel = (BookModel)comboBox1.SelectedItem;
+            label9.Text = bookModel.Name;
+            label10.Text = string.Join(", ", bookModel.Authors.Select(author => author.Name));
+            label11.Text = string.Join("-", bookModel.Genres.Select(genre => genre.Name));
+            label12.Text = bookModel.PageCount.ToString();
+            label13.Text = bookModel.BookID.ToString();
+        }
+
+        private void Label14_Click(object sender, EventArgs e)
         {
 
         }

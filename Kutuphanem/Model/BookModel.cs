@@ -17,19 +17,7 @@ namespace Kutuphanem.Model
 
         public override string ToString()
         {
-            string authorsString = "";
-            string genresString = "";
-
-
-            foreach (var author in Authors)
-            {
-                authorsString += "," + author.Name;
-            }
-            foreach (var genre in Genres)
-            {
-                authorsString += "," + genre.Name;
-            }
-            return Name + '-' + authorsString + "( " + genresString + " )";
+            return $"{Name} ({BookID})";
         }
     }
 }

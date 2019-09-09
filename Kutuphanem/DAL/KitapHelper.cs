@@ -9,13 +9,16 @@ namespace Kutuphanem
 {
     class KitapHelper
     {
-        public static List<BookModel> ListBooks()
+        public static List<BookModel> ListBooks(string searchQuery)
         {
             try
             {
                 using (MyLibraryEntities db = new MyLibraryEntities())
                 {
-                    return MapBookEntity(db.Book.ToList());
+                    var result = db.Book.Where(b => b.Name.Contains(searchQuery))
+                             .ToList();
+
+                    return MapBookEntity(result);
                 }
             }
 
