@@ -34,5 +34,10 @@ namespace Kutuphanem
             db.SaveChanges();
             dataGridView1.DataSource = db.Author.ToList();
         }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

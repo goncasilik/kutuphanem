@@ -33,7 +33,7 @@ namespace Kutuphanem
             };
             db.Genre.Add(newGenre);
             db.SaveChanges();
-            dataGridView1.DataSource = db.Genre.ToList();
+            
         }
 
         private void Button3_Click(object sender, EventArgs e)

@@ -20,6 +20,7 @@ namespace Kutuphanem
 
         private void Anasayfa_Load(object sender, EventArgs e)
         {
+            label4.Text = Form1.metin;
             listBox1.DataSource = KitapHelper.ListBooks();
             LoadMyLibrary();
         }

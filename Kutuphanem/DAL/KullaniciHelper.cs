@@ -43,5 +43,16 @@ namespace Kutuphanem
                 return db.Person.ToList();
             }
         }
+
+        public static string GetName(string email)
+        {
+            using (MyLibraryEntities db = new MyLibraryEntities())
+            {
+                Person person = db.Person.Where(p => p.Email.Equals(email)).FirstOrDefault();
+
+                return person.FirstName;
+
+            }
+        }
     }
 }

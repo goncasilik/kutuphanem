@@ -10,6 +10,7 @@ namespace Kutuphanem.DAL
 {
     class PersonHelper
     {
+
         public static PersonModel GetPersonWithBooks()
         {
             try
@@ -17,7 +18,7 @@ namespace Kutuphanem.DAL
                 using (MyLibraryEntities db = new MyLibraryEntities())
                 {
                     Person person = db.Person
-                     .Where(p => p.PersonID == 1)
+                     .Where(p => p.PersonID == 1) // change this
                      .Include(p => p.Books.Select(b => b.Authors))
                      .Include(p => p.Books.Select(g => g.Genres))
                      .FirstOrDefault();

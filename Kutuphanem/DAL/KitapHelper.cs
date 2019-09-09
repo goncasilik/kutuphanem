@@ -66,6 +66,7 @@ namespace Kutuphanem
             }
         }
 
+        
         public static List<Genre> ListGenres()
         {
             using (MyLibraryEntities db = new MyLibraryEntities())

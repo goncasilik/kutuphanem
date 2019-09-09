@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Kutuphanem
+namespace Kutuphanem.UI
 {
-    public partial class KayıtOl : Form
+    public partial class PersonForm : Form
     {
-        public KayıtOl()
+        public PersonForm()
         {
             InitializeComponent();
-        }
-
-        private void KayıtOl_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }
