@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kutuphanem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,35 @@ namespace Kutuphanem.DAL
             {
                 return db.Author.Count();
             }
+        }
+
+        public static List<AuthorModel> MapAuthorEntity(List<Author> authors)
+        {
+            List<AuthorModel> authorsModel = new List<AuthorModel>();
+
+            foreach (var author in authors)
+            {
+                AuthorModel authorModel = new AuthorModel
+                {
+                    AuthorID = author.AuthorID,
+                    Name = author.Name,
+                };
+
+                authorsModel.Add(authorModel);
+            }
+
+            return authorsModel;
+        }
+
+        public static Author MapAuthorModel(AuthorModel author)
+        {
+            Author authorEntity = new Author
+            {
+                AuthorID = author.AuthorID,
+                Name = author.Name,
+            };
+
+            return authorEntity;
         }
     }
 }

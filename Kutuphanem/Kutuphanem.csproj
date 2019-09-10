@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Model\AuthorModel.cs" />
     <Compile Include="Model\BookModel.cs" />
+    <Compile Include="Model\GenreModel.cs" />
     <Compile Include="Model\MyBookModel.cs" />
     <Compile Include="Model\PersonModel.cs" />
     <Compile Include="MyLibraryModel.Context.cs">

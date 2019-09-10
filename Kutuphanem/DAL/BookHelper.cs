@@ -50,12 +50,22 @@ namespace Kutuphanem.DAL
             return booksModel;
         }
 
-        public static void AddBook(Book book)
+        public static bool Addbook(Book book)
         {
-            using(MyLibraryEntities db = new MyLibraryEntities())
+            try
             {
-                db.Book.Add(book);
-                db.SaveChanges();
+                using (MyLibraryEntities db = new MyLibraryEntities())
+                {
+                    db.Book.Add(book);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
 

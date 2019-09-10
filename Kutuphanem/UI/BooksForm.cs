@@ -1,4 +1,5 @@
 ﻿using Kutuphanem.DAL;
+using Kutuphanem.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,26 +21,17 @@ namespace Kutuphanem
 
         private void Kitaplar_Load(object sender, EventArgs e)
         {
-            List<Author> authors = AuthorHelper.ListAuthors();
-            //comboBox1.DataSource = authors;
-            foreach (var author in authors)
-            {
-                comboBox1.Items.Add(author.Name);
-            }
+            List<AuthorModel> authors = AuthorHelper.MapAuthorEntity(AuthorHelper.ListAuthors());
+            listBox1.DataSource = authors;
+            listBox1.SelectionMode = SelectionMode.MultiSimple;
 
-            List<Genre> genres = GenreHelper.ListGenres();
-            //comboBox2.DataSource = genres;
-            foreach (var genre in genres)
-            {
-                comboBox2.Items.Add(genre.Name);
-            }
+            List<GenreModel> genres = GenreHelper.MapGenreEntity(GenreHelper.ListGenres());
+            listBox2.DataSource = genres;
+            listBox2.SelectionMode = SelectionMode.MultiSimple;
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            pictureBox1.ImageLocation = openFileDialog1.FileName;
-            textBox3.Text = openFileDialog1.FileName;
 
         }
 
@@ -50,10 +42,39 @@ namespace Kutuphanem
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            
+            Book newBook = new Book
+            {
+                Name = textBox1.Text
+            };
+
+            List<Author> authors = new List<Author>();
+
+            foreach (var item in listBox1.SelectedItems)
+            {
+                authors.Add(AuthorHelper.MapAuthorModel((AuthorModel)item));
+            }
+
+            newBook.Authors = authors;
+
+            List<Genre> genres = new List<Genre>();
+
+            foreach (var item in listBox2.SelectedItems)
+            {
+                genres.Add(GenreHelper.MapGenreModel((GenreModel)(item)));
+            }
+
+            newBook.Genres = genres;
+            newBook.PageCount = Convert.ToInt32(textBox2.Text);
+
+            bool isAdded = BookHelper.Addbook(newBook);
+
+            if (isAdded)
+            {
+                // load
+            }
         }
 
-        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

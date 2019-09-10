@@ -25,13 +25,15 @@ namespace Kutuphanem
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Person newPerson = new Person();
-            newPerson.Email = textBox1.Text;
-            newPerson.FirstName = textBox2.Text;
-            newPerson.LastName = textBox3.Text;
-            newPerson.Password = textBox4.Text;
-            newPerson.Role = "User";
-            
+            Person newPerson = new Person
+            {
+                Email = textBox1.Text,
+                FirstName = textBox2.Text,
+                LastName = textBox3.Text,
+                Password = textBox4.Text,
+                Role = "User"
+            };
+
             db.Person.Add(newPerson);
             db.SaveChanges();
         }

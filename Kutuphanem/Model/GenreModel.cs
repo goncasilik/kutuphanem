@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Kutuphanem.Model
 {
-    class AuthorModel
+    class GenreModel
     {
-        public int AuthorID { get; set; }
+        public int GenreID { get; set; }
         public string Name { get; set; }
         public List<Book> Books { get; set; }
 
