@@ -77,3 +77,4 @@ C:\Users\Gonca\Desktop\Kutuphanem\Kutuphanem\bin\Debug\EntityFramework.SqlServer
 C:\Users\Gonca\Desktop\Kutuphanem\Kutuphanem\bin\Debug\EntityFramework.xml
 C:\Users\Gonca\Desktop\Kutuphanem\Kutuphanem\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Gonca\Desktop\Kutuphanem\Kutuphanem\obj\Debug\Kutuphanem.csproj.CopyComplete
+C:\Users\Gonca\Desktop\Kutuphanem\Kutuphanem\obj\Debug\Kutuphanem.UI.PersonForm.resources

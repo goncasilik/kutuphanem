@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kutuphanem.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,19 @@ namespace Kutuphanem
 {
     public partial class KitapTuru : Form
     {
-        MyLibraryEntities db = new MyLibraryEntities();
-
         public KitapTuru()
         {
             InitializeComponent();
         }
 
+        private void ListGenres()
+        {
+            dataGridView1.DataSource = GenreHelper.ListGenres();
+        }
+
         private void KitapTuru_Load(object sender, EventArgs e)
         {
-            Genre tur = new Genre();
-            dataGridView1.DataSource = db.Genre.ToList();
+            ListGenres();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -31,9 +34,8 @@ namespace Kutuphanem
             {
                 Name = textBox2.Text
             };
-            db.Genre.Add(newGenre);
-            db.SaveChanges();
-            
+            GenreHelper.AddGenre(newGenre);
+            ListGenres();
         }
 
         private void Button3_Click(object sender, EventArgs e)

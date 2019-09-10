@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kutuphanem
+namespace Kutuphanem.DAL
 {
-    class YazarHelper
+    class AuthorHelper
     {
         public static List<Author> ListAuthors()
         {
@@ -31,6 +31,14 @@ namespace Kutuphanem
                 Author author = db.Author.Where(a => a.AuthorID == authorID).FirstOrDefault();
                 db.Author.Remove(author);
                 db.SaveChanges();
+            }
+        }
+
+        public static int TotalAuthorCount()
+        {
+            using (MyLibraryEntities db = new MyLibraryEntities())
+            {
+                return db.Author.Count();
             }
         }
     }

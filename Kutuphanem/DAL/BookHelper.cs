@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kutuphanem
+namespace Kutuphanem.DAL
 {
-    class KitapHelper
+    class BookHelper
     {
         public static List<BookModel> ListBooks(string searchQuery)
         {
@@ -69,29 +69,11 @@ namespace Kutuphanem
             }
         }
 
-        
-        public static List<Genre> ListGenres()
+        public static int TotalBookCount()
         {
             using (MyLibraryEntities db = new MyLibraryEntities())
             {
-                return db.Genre.ToList();
-            }
-        }
-        public static void AddGenre(Genre tur)
-        {
-            using (MyLibraryEntities db = new MyLibraryEntities())
-            {
-                db.Genre.Add(tur);
-                db.SaveChanges();
-            }
-        }
-
-        public static void DeleteGenre(Genre genre)
-        {
-            using (MyLibraryEntities db = new MyLibraryEntities())
-            {
-                db.Genre.Remove(genre);
-                db.SaveChanges();
+                return db.Book.Count();
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kutuphanem.UI;
+using Kutuphanem.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +14,8 @@ namespace Kutuphanem
 {
     public partial class AdminSayfa : Form
     {
-        MyLibraryEntities db = new MyLibraryEntities();
+        private static Person loggedPerson;
+
         public AdminSayfa()
         {
             InitializeComponent();
@@ -20,8 +23,9 @@ namespace Kutuphanem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            KitapTuru kitapturuform = new KitapTuru();
-            kitapturuform.Show();
+            KitapTuru genreForm = new KitapTuru();
+            genreForm.Show();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,15 +52,19 @@ namespace Kutuphanem
 
         private void AdminSayfa_Load(object sender, EventArgs e)
         {
-            label2.Text = Form1.metin;
-            label7.Text = db.Person.Count().ToString();
-            label8.Text = db.Author.Count().ToString();
-            label9.Text = db.Book.Count().ToString();
+            loggedPerson = Form1.loggedPerson;
+            label2.Text = loggedPerson.FirstName + " " + loggedPerson.LastName;
+
+            label5.Text = GenreHelper.TotalGenreCount().ToString();
+            label7.Text = PersonHelper.TotalPersonCount().ToString();
+            label8.Text = AuthorHelper.TotalAuthorCount().ToString();
+            label9.Text = BookHelper.TotalBookCount().ToString();
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            
+            PersonForm PersonForm = new PersonForm();
+            PersonForm.Show();
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -65,6 +73,16 @@ namespace Kutuphanem
         }
 
         private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Panel5_Paint(object sender, PaintEventArgs e)
         {
 
         }

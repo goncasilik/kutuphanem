@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kutuphanem.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,10 @@ namespace Kutuphanem
 {
     public partial class Yazarlar : Form
     {
-        MyLibraryEntities db = new MyLibraryEntities();
+        private void ListAuthors()
+        {
+            dataGridView1.DataSource = AuthorHelper.ListAuthors();
+        }
 
         public Yazarlar()
         {
@@ -21,7 +25,7 @@ namespace Kutuphanem
 
         private void Yazarlar_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = db.Author.ToList();
+            ListAuthors();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -30,12 +34,36 @@ namespace Kutuphanem
             {
                 Name = textBox2.Text
             };
-            db.Author.Add(newAuthor);
-            db.SaveChanges();
-            dataGridView1.DataSource = db.Author.ToList();
+            AuthorHelper.AddAuthor(newAuthor);
+            ListAuthors();
         }
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
         {
 
         }

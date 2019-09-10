@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kutuphanem.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,20 +17,21 @@ namespace Kutuphanem
         {
             InitializeComponent();
         }
-        public static string metin;
+        public static Person loggedPerson;
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            metin = textBox1.Text;
+            
             Anasayfa anasayfa = new Anasayfa();
             AdminSayfa adminSayfa = new AdminSayfa();
             
             if (!(string.IsNullOrEmpty(textBox1.Text)) && !(string.IsNullOrEmpty(textBox2.Text))) // textboxlar dolu mu 
             {
-                bool kontrol = KullaniciHelper.Login(textBox1.Text, textBox2.Text); // kullanici adi ve sifre dogru mu
-                if (kontrol)
+                Person person = PersonHelper.Login(textBox1.Text, textBox2.Text); // kullanici adi ve sifre dogru mu
+                if (person is Person)
                 {
-                    if (KullaniciHelper.PersonRole(textBox1.Text).Equals("Admin"))
+                    loggedPerson = person;
+                    if (person.Role.Equals("Admin"))
                     {
                         adminSayfa.Show();
                     }
@@ -58,6 +60,13 @@ namespace Kutuphanem
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            KayıtOl kayıtOl = new KayıtOl();
+            kayıtOl.Show();
 
         }
     }

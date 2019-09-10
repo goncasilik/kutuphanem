@@ -115,34 +115,33 @@
     <Compile Include="UI\KayıtOl.Designer.cs">
       <DependentUpon>KayıtOl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\KitapHelper.cs" />
-    <Compile Include="UI\Kitaplar.cs">
+    <Compile Include="DAL\BookHelper.cs" />
+    <Compile Include="UI\BooksForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Kitaplar.Designer.cs">
-      <DependentUpon>Kitaplar.cs</DependentUpon>
+    <Compile Include="UI\BooksForm.Designer.cs">
+      <DependentUpon>BooksForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\KitapTuru.cs">
+    <Compile Include="UI\GenresForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\KitapTuru.Designer.cs">
-      <DependentUpon>KitapTuru.cs</DependentUpon>
+    <Compile Include="UI\GenresForm.Designer.cs">
+      <DependentUpon>GenresForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\KullaniciHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DAL\YazarHelper.cs" />
+    <Compile Include="DAL\AuthorHelper.cs" />
     <Compile Include="UI\PersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\PersonForm.Designer.cs">
       <DependentUpon>PersonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Yazarlar.cs">
+    <Compile Include="UI\AuthorsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Yazarlar.Designer.cs">
-      <DependentUpon>Yazarlar.cs</DependentUpon>
+    <Compile Include="UI\AuthorsForm.Designer.cs">
+      <DependentUpon>AuthorsForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="UI\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
@@ -156,11 +155,11 @@
     <EmbeddedResource Include="UI\KayıtOl.resx">
       <DependentUpon>KayıtOl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Kitaplar.resx">
-      <DependentUpon>Kitaplar.cs</DependentUpon>
+    <EmbeddedResource Include="UI\BooksForm.resx">
+      <DependentUpon>BooksForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\KitapTuru.resx">
-      <DependentUpon>KitapTuru.cs</DependentUpon>
+    <EmbeddedResource Include="UI\GenresForm.resx">
+      <DependentUpon>GenresForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -172,8 +171,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\Yazarlar.resx">
-      <DependentUpon>Yazarlar.cs</DependentUpon>
+    <EmbeddedResource Include="UI\PersonForm.resx">
+      <DependentUpon>PersonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuthorsForm.resx">
+      <DependentUpon>AuthorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="MyLibraryModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

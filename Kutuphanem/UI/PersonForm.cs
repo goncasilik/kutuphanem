@@ -12,9 +12,21 @@ namespace Kutuphanem.UI
 {
     public partial class PersonForm : Form
     {
+        MyLibraryEntities db = new MyLibraryEntities();
         public PersonForm()
         {
             InitializeComponent();
+        }
+
+        private void PersonForm_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = db.Person.ToList();
+
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
