@@ -79,6 +79,25 @@ namespace Kutuphanem.DAL
             }
         }
 
+        public static List<BookModel> GetAllBooks()
+        {
+            try
+            {
+                using (MyLibraryEntities db = new MyLibraryEntities())
+                {
+                    var result = db.Book.ToList();
+
+                    return MapBookEntity(result);
+                }
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+        }
+
         public static int TotalBookCount()
         {
             using (MyLibraryEntities db = new MyLibraryEntities())

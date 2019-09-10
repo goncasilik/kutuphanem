@@ -45,8 +45,8 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -190,6 +190,7 @@
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.Size = new System.Drawing.Size(724, 452);
             this.dataGridView2.TabIndex = 20;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellContentClick);
             // 
             // Column7
             // 
@@ -227,15 +228,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "KİTAP";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(108, 79);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(189, 52);
-            this.listBox1.TabIndex = 10;
-            // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
@@ -244,6 +236,15 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(189, 52);
             this.listBox2.TabIndex = 11;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(108, 79);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(189, 52);
+            this.listBox1.TabIndex = 10;
             // 
             // Kitaplar
             // 

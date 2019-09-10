@@ -14,6 +14,10 @@ namespace Kutuphanem
 {
     public partial class Kitaplar : Form
     {
+        public void LoadBooks()
+        {
+            dataGridView2.DataSource = BookHelper.GetAllBooks();
+        }
         public Kitaplar()
         {
             InitializeComponent();
@@ -21,6 +25,8 @@ namespace Kutuphanem
 
         private void Kitaplar_Load(object sender, EventArgs e)
         {
+            LoadBooks();
+
             List<AuthorModel> authors = AuthorHelper.MapAuthorEntity(AuthorHelper.ListAuthors());
             listBox1.DataSource = authors;
             listBox1.SelectionMode = SelectionMode.MultiSimple;
@@ -67,14 +73,18 @@ namespace Kutuphanem
             newBook.PageCount = Convert.ToInt32(textBox2.Text);
 
             bool isAdded = BookHelper.Addbook(newBook);
-
             if (isAdded)
             {
-                // load
+                this.LoadBooks();
             }
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
