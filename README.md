@@ -4,6 +4,11 @@
 
 C#, Entity Framework ve Winform ile geliştirilen bir kişisel kütüphane yönetim uygulamasıdır. 
 
+## Tablo (Entity) Yapısı
+
+![Image of Yaktocat](https://github.com/goncadenkgelen/kutuphanem/blob/master/KutuphanemDiagram.jpg)
+
+## SQL Sorguları
 ```
 Create table Author
 (
