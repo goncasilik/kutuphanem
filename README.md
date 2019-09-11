@@ -1,5 +1,6 @@
 # kutuphanem
 
+```
 Create table Author
 (
 	AuthorID int primary key identity,
@@ -50,3 +51,4 @@ Create table PersonBook
 	--Status nvarchar(50) not null check (Status in('Want to Read', 'Currently Reading', 'Read'))
 	Primary key (BookID, PersonID)
 )
+```
