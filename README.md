@@ -1,5 +1,9 @@
 # Kutuphanem
 
+## Kutuphanem Nedir?
+
+Entity Framework ve Winform ile geliştirilen bir kişisel kütüphane yönetim uygulamasıdır. 
+
 ```
 Create table Author
 (
